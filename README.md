@@ -1,0 +1,1 @@
+# dsc-2-14-13-gradient-descent-in-3d
