@@ -1,9 +1,9 @@
 
-# Gradient Descent in 3d
+# Gradient Descent in 3D
 
 ## Introduction
 
-previously, we talked about how we to think about moving along a 3D cost curve.
+Previously, we talked about how we to think about moving along a 3D cost curve.
 
 ![](./gradientdescent.png)
 
