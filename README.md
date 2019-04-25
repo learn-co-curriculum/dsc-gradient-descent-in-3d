@@ -5,9 +5,23 @@
 
 Previously, we talked about how we to think about moving along a 3D cost curve.
 
-![](./gradientdescent.png)
+![](./images/gradientdescent.png)
 
 We know that moving along the 3D cost curve above, means changing the $m$ and $b$ variables of a regression line like the one below.  And we do so with the purpose of having our line better match our data. In this section, you'll learn about *partial derivatives* which will make you achieve this.
+
+## Objectives
+
+You will be able to:
+
+* Understand how the process of gradient descent when altering both y-intercept and slope variables
+* Understand what it means to take a partial derivative 
+* Understand the rule for taking partial derivatives
+
+## Review gradient descent in two dimensions
+
+In this lesson, we'll learn about gradient descent in three dimensions, but let's first remember how it worked in two dimensions when we changed just one variable of our regression line.  
+
+In two dimensions, when changing just one variable, $m$ or $b$, gradient descent means stepping forwards or backwards along the cost curve and and taking a specific step size.  To determine whether to move forwards or backwards as well as the step size, we imagine standing on this two-dimension curve (shown below) and feeling the slope of our cost curve to tell us how to move.  A step in a direction means a change in one of our regression variables.
 
 
 ```python
@@ -30,38 +44,26 @@ plt.ylabel("y", fontsize=14);
 ```
 
 
-![png](index_files/index_5_0.png)
+![png](index_files/index_10_0.png)
 
 
-## Objectives
+As we adjust to different slopes, we achieve different errors, represented by RSS.
 
-You will be able to:
+![](./images/slopes.png)
 
-* Understand how the process of gradient descent when altering both y-intercept and slope variables
-* Understand what it means to take a partial derivative 
-* Understand the rule for taking partial derivatives
-
-## Review gradient descent in two dimensions
-
-In this lesson, we'll learn about gradient descent in three dimensions, but let's first remember how it worked in two dimensions when we changed just one variable of our regression line.  
-
-In two dimensions, when changing just one variable, $m$ or $b$, gradient descent means stepping forwards or backwards along the cost curve and and taking a specific step size.  To determine whether to move forwards or backwards as well as the step size, we imagine standing on this two-dimension curve (shown below) and feeling the slope of our cost curve to tell us how to move.  A step in a direction means a change in one of our regression variables.
-
-![](./slopes.png)
-
-So that was gradient descent in two dimensions.  What is gradient descent in three dimensions? 
+So that is how gradient descent is represented in two dimensions. How is gradient descent represented in three dimensions?
 
 ## Gradient Descent in 3 dimensions
 
 In three dimensions, we once again choose an initial regression line, which means that we are choosing a point on the graph below.  Then we begin taking steps towards the minimum.  But of course, we are now able to walk not just forwards and backwards but left and right as well -- as we now can alter two variables.  
 
-![](./gradientdescent.png)
+![](./images/gradientdescent.png)
 
 To get a sense of how this works, imagine our initial regression line places us at the back-left corner of the graph above, with a slope of 50, and y-intercept of negative 20.  Now imagine that we cannot see the rest of the graph - yet we still want to approach the minimum.  How do we do this?
 
 Once again, we feel out the slope of the graph with our feet.  Only this time, as we shift our feet, we are preparing to walk in two dimensional space.  
 
-![](./traveller-stepping.jpg)
+![](./images/traveller-stepping.jpg)
 
 So this is our approach.  We shift horizontally a little bit to determine the change in output in right-left direction, and then shift forward and back to determine the change in output in that direction.  From there we take the next step in the direction of the steepest descent. 
 
@@ -79,7 +81,7 @@ $$f(x, y) = y*x^2 $$
 
 Remember that the function looks like the following: 
 
-![](./parabolayx2.png)
+![](./images/parabolayx2.png)
 
 To take a derivative with respect to $x$ means to ask, how does the output change, as we make a nudge only in the $x$ direction. To express that we are nudging in the $x$ direction we say $\frac{\delta f}{\delta x}$.  That symbol is the lower case delta.  We read this as taking the derivative with respect to $x$.  But it just means seeing the change in output as we nudge in the $x$ direction.  
 
@@ -91,7 +93,7 @@ So what does a derivative $\frac{\delta f}{\delta x}$ look like? How do we think
 
 Well remember how we think of a standard derivative of a one variable function, for example $f(x) = x^2 $. 
 
-![](./tangent-liner.png)
+![](./images/tangent-liner.png)
 
 So in two dimensions, to take the derivative at a given point, we simply calculate the slope of the function at that x value.
 
@@ -99,7 +101,7 @@ Now the partial derivative of a multivariable function is fairly similar.  But h
 
 ### Graphs for $\frac{df}{dx}$
 
-![](./partial-derivatives-3d.png)
+![](./images/dfdx.png)
 
 Let's take a close look.  The top left graph shows $\frac{\delta f}{\delta x}$ at different points of $f(x, y)$ where $y = -1$.  So as you can see, $\frac{\delta f}{\delta x}f(1, 3) = -6$ as shown in the green line in the top left.  That's because when you move to that point on the graph, $(3, -1)$ and then nudge a little bit in the $x$ direction, the change in output is $-6$.  And that is represented by the line tangent to the function at that point in the $x$ direction.  You can go through the other points in these graphs, and work through the same logic. 
 
@@ -111,7 +113,7 @@ As you can see, $\frac{\delta f}{dx}$ means the change in output from a nudge in
 
 This can be a little mind-bending so let's go through this again for $\frac{df}{dy}f(x, y)$ where $f(x,y) = (yx^2) $.  Once again, the 3-d graph of $f(x,y) = yx^2$ is the following: 
 
-![](./parabolayx2.png)
+![](./images/parabolayx2.png)
 
 Now for $\frac{df}{dy}$ of a function $f(x, y) $ you can think sliding through different slices of the function but this time for different values of $x$.  So again, we have our freeze frame, but this time each frame represents ascending values along the x axis.  
 
@@ -121,7 +123,7 @@ So now, to think about taking the derivative, once again we move to a slice of g
 
 ### Graphs for $\frac{df}{dy}$
 
-![](./partial-derivatives-dy.png)
+![](./images/dfdy.png)
 
 So that is our technique for a partial derivative.  For $\frac{df}{dy} $ we move to a slice of the curve at a specific value of $x$, move to the point for y, and then calculate the change in output as we nudge in the $y$ direction.  
 
@@ -129,7 +131,7 @@ For $\frac{df}{dx}$ (again below), we move to a slice of a curve of a specific v
 
 ### Graphs for $\frac{df}{dx}$
 
-![](./partial-derivatives-3d.png)
+![](./images/dfdx.png)
 
 ## Our rule for partial derivatives
 
@@ -142,7 +144,7 @@ $$\frac{df}{dy}f(x,y) =  \frac{df}{dy}(y) * x^2 = 1*x^2 = x^2$$
 
 So that's all it means to take a partial derivative of something: look at what you are taking a derivative with respect to, and only take the derivative of those types of variables.  And guess what, this result lines up to what we saw earlier.
 
-![](./partial-derivatives-dy.png)
+![](./images/dfdy.png)
 
 We calculated that $\frac{df}{dy}f(x,y) = x^2 $, and that is what the graphs show.  When $x = 2$ our derivative is always 4.  And when $x$ is $3$ the derivative is always 9.  So even though we are taking $\frac{df}{dy}$, the $x$ value is influencing the steepness of that line.  But by the time we get to our nudge, that value of $x$ is **constant**, it's influenced has already been applied, and then we are seeing how the output changes as we nudge in the $y$ direction.
 
@@ -154,7 +156,7 @@ $$\frac{df}{dx}f(x,y) = y*\frac{df}{dx}(x^2) = 2*y*x$$
 
 So this time with $\frac{df}{dx}f(x,y) $, we treat $y$ as a constant, as the influence $y$ is first applied by moving to a slice of our graph for a value of $y$.  Then once there, we are evaluating the change in output as we nudge in the $x$ direction.   
 
-![](./partial-derivatives-3d.png)
+![](./images/dfdx.png)
 
 ## Summary
 
