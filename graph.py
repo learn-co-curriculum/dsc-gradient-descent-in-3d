@@ -1,91 +1,59 @@
-import plotly
-from plotly.offline import iplot, init_notebook_mode
-init_notebook_mode(connected=True)
+import matplotlib.pyplot as plt
+import numpy as np
 
-def trace(data, mode = 'markers', name="data"):
-    x_values = list(map(lambda point: point['x'],data))
-    y_values = list(map(lambda point: point['y'],data))
-    return {'x': x_values, 'y': y_values, 'mode': mode, 'name': name}
+def func_1(x,coef):
+    return coef * x**2
+def func_2(y,coef):
+    return y * coef **2
 
-def line_function_trace(line_function, x_values, mode = 'line', name = 'line function'):
-    values = line_function_data(line_function, x_values)
-    values.update({'mode': mode, 'name': name})
-    return values
+def deriv(f,x,co):
 
-def line_function_data(line_function, x_values):
-    y_values = list(map(lambda x: line_function(x), x_values))
-    return {'x': x_values, 'y': y_values}
+    h = 0.000000001
+    return np.round((f(x+h,co) - f(x,co))/h,1)
 
-def m_b_data(m, b, x_values):
-    y_values = list(map(lambda x: m*x + b, x_values))
-    return {'x': x_values, 'y': y_values}
+def tan_plot(f,x,co):
+    x_vals = np.linspace(x - 0.9,x+0.9,100)
+    slope = deriv(f,x,co)
+    tan = f(x,co)+slope*(x_vals-x)
+    y = f(x,co)
+    return (slope,x_vals, tan,y)
 
-def m_b_trace(m, b, x_values, mode = 'line', name = 'line function'):
-    values = m_b_data(m, b, x_values)
-    values.update({'mode': mode, 'name': name})
-    return values
+def make_plots(func):
+    coefs = [-1,1,2,3]
+    colors = ['g','r','c','m']
+    plt.figure(figsize=(14,14))
+    for coef_idx, coef in enumerate(coefs):
+        x_list = [0,1,3,5]
+        ax = plt.subplot(2,2,coef_idx+1)
+        ax.plot(np.linspace(-7,7,100), func(np.linspace(-7,7,100),coef),alpha=0.25)
+        sub_label = 'f(x,{c}) = {c} * x^2'.format(c=coef)
+        ax.set_title(sub_label)
+        if np.sign(coef) > 0:
+            ax.set_ylim(-4,100)
+        else:
+            ax.set_ylim(-100,4)
+        for color_idx,x_val in enumerate(x_list):
+            m,x,tan,y = tan_plot(func,x_val,coef)
+            ax.plot(x_val,y,marker='o',color=colors[color_idx])
+            ax.plot(x,tan,label='slope ={}'.format(m),color=colors[color_idx])
+        ax.legend()
+    plt.show()
 
-def error_line(regression_line, point):
-    y_hat = regression_line(point['x'])
-    x_value = point['x']
-    name = 'error at ' + str(x_value)
-    return {'x': [x_value, x_value], 'y': [point['y'], y_hat], 'mode': 'line', 'marker': {'color': 'red'}, 'name': name}
 
-def error_lines(regression_line, points):
-    return list(map(lambda point: error_line(regression_line, point), points))
-
-def plot(traces):
-    plotly.offline.iplot(traces)
-
-def squared_error(x, points, m, b):
-    return (y(x, points) - (m*x + b))**2
-
-def rss(points, m, b):
-    squared_errors = list(map(lambda point: squared_error(point['x'], points, m, b), points))
-    return sum(squared_errors)
-
-def build_tangent_line(original_function, x, line_length = 5, delta = .01):
-    curve_at_point = derivative_at(original_function, x, delta)
-    slope = curve_at_point['slope']
-    x_minus = x - line_length
-    x_plus = x + line_length
-    y = original_function(x)
-    y_minus = y - slope * line_length
-    y_plus = y + slope * line_length
-    text = '    slope:' + format(slope, '.2f')
-    return {'x': [x_minus, x, x_plus], 'y': [y_minus, y, y_plus], 'mode': 'lines+text', 'text': [text], 'textposition': 'right'}
-
-def derivative_at(original_function, x, delta = .01):
-    numerator = original_function(x + delta) - original_function(x)
-    slope = numerator/delta
-    return {'value': x, 'slope': slope}
-
-# def build_tangent_cost_line(b, m, points, line_length = 5):
-#     curve_at_point = cost_curve_at(b, m, points)
-#     slope = curve_at_point['slope']
-#     b_minus = b - line_length
-#     b_plus = b + line_length
-#     rss_exact = curve_at_point['rss']
-#     rss_minus = rss_exact - slope * line_length
-#     rss_plus = rss_exact + slope * line_length
-#     text = '    slope:' + format(slope, '.2f')
-#     return {'x': [b_minus, b, b_plus], 'y': [rss_minus, curve_at_point['rss'], rss_plus], 'mode': 'lines+text', 'text': [text], 'textposition': 'right'}
-
-def cost_chart_b(points, m, b_values):
-    rss_values = list(map(lambda b: rss(points, m, b), b_values))
-    return {'b_values': b_values, 'rss_values': rss_values}
-
-def cost_curve_at(b, m, points):
-    delta = .01
-    base_rss = rss(points, m, b)
-    numerator = rss(points, m, b + delta) - base_rss
-    slope = numerator/delta
-    return {'b': b,'rss': base_rss, 'slope': slope}
-
-def trace_values(x_values, y_values, mode = 'markers', name="data"):
-    return {'x': x_values, 'y': y_values, 'mode': mode, 'name': name}
-# next to build out is a cost function table
-# https://plot.ly/python/table/
-
-# followed by a cost function graph
-# https://plot.ly/python/table/
+def make_plots_2(func):
+    coefs = [-1,1,2,3]
+    colors = ['g','r','c','m']
+    plt.figure(figsize=(14,14))
+    for coef_idx, coef in enumerate(coefs):
+        x_list = [0,1,3,5]
+        ax = plt.subplot(2,2,coef_idx+1)
+        ax.plot(np.linspace(-7,7,100), func(np.linspace(-7,7,100),coef),alpha=0.25)
+        sub_label = 'f(y,{c}) = y * {c}^2'.format(c=coef)
+        ax.set_title(sub_label)
+        for color_idx,x_val in enumerate(x_list):
+            m,x,tan,y = tan_plot(func,x_val,coef)
+            ax.plot(x_val,y,marker='o',color=colors[color_idx])
+            ax.plot(x,tan,label='slope ={}'.format(m),color=colors[color_idx])
+        ax.legend()
+    plt.show()
+make_plots_2(func_2)
