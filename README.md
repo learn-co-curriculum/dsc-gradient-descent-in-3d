@@ -5,7 +5,7 @@
 
 Previously, we talked about how we to think about moving along a 3D cost curve.
 
-![](./images/gradientdescent.png)
+<img src="./images/new_gradientdescent.png" width="600">
 
 We know that moving along the 3D cost curve above means changing the $m$ and $b$ variables of a regression line like the one below.  And we do so with the purpose of having our line better match our data. In this section, you'll learn about *partial derivatives* which will make you achieve this.
 
@@ -57,7 +57,7 @@ So that is how gradient descent is represented in two dimensions. How is gradien
 
 In three dimensions, we once again choose an initial regression line, which means that we are choosing a point on the graph below.  Then we begin taking steps towards the minimum.  But of course, we are now able to walk not just forwards and backwards but left and right as well -- as we now can alter two variables.  
 
-![](./images/gradientdescent.png)
+<img src="./images/new_gradientdescent.png" width="600">
 
 To get a sense of how this works, imagine our initial regression line places us at the back-left corner of the graph above, with a slope of 50, and y-intercept of negative 20.  Now imagine that we cannot see the rest of the graph - yet we still want to approach the minimum.  How do we do this?
 
@@ -81,7 +81,7 @@ $$f(x, y) = y*x^2 $$
 
 Remember that the function looks like the following: 
 
-![](./images/parabolayx2.png)
+<img src="./images/new_parabolayx2.png" width="400">
 
 To take a derivative with respect to $x$ means to ask, how does the output change, as we make a nudge only in the $x$ direction. To express that we are nudging in the $x$ direction we say $\frac{\delta f}{\delta x}$.  That symbol is the lower case delta.  We read this as taking the derivative with respect to $x$.  But it just means seeing the change in output as we nudge in the $x$ direction.  
 
@@ -113,7 +113,7 @@ As you can see, $\frac{\delta f}{dx}$ means the change in output from a nudge in
 
 This can be a little mind-bending so let's go through this again for $\frac{df}{dy}f(x, y)$ where $f(x,y) = (yx^2) $.  Once again, the 3-d graph of $f(x,y) = yx^2$ is the following: 
 
-![](./images/parabolayx2.png)
+<img src="./images/new_parabolayx2.png" width="400">
 
 Now for $\frac{df}{dy}$ of a function $f(x, y) $ you can think sliding through different slices of the function but this time for different values of $x$.  So again, we have our freeze frame, but this time each frame represents ascending values along the x axis.  
 
