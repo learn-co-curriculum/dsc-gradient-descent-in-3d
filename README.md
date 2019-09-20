@@ -27,7 +27,7 @@ In two dimensions, when changing just one variable, $m$ or $b$, gradient descent
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
-% matplotlib inline
+%matplotlib inline
 np.random.seed(225)
 
 def regression_formula(x):
