@@ -7,7 +7,7 @@ Previously, we talked about how we to think about moving along a 3D cost curve.
 
 <img src="./images/new_gradientdescent.png" width="600">
 
-We know that moving along the 3D cost curve above means changing the $m$ and $b$ variables of a regression line like the one below.  And we do so with the purpose of having our line better match our data. In this section, you'll learn about *partial derivatives* which will make you achieve this.
+We know that moving along the 3D cost curve above means changing the $m$ and $b$ variables of a regression line like the one below.  And we do so with the purpose of having our line better match our data. In this section, you'll learn about *partial derivatives* which will make you achieve this. 
 
 ## Objectives
 
