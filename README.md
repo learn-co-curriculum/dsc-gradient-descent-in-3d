@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Previously, we talked about how we to think about moving along a 3D cost curve.
+Previously, we talked about how to think about gradient descent when moving along a 3D cost curve.
 
 <img src="./images/new_gradientdescent.png" width="600">
 
@@ -13,9 +13,8 @@ We know that moving along the 3D cost curve above means changing the $m$ and $b$
 
 You will be able to:
 
-* Understand how the process of gradient descent when altering both y-intercept and slope variables
-* Understand what it means to take a partial derivative 
-* Understand the rule for taking partial derivatives
+* Define a partial derivative
+* Interpret visual representations of gradient descent in more than two dimensions
 
 ## Review gradient descent in two dimensions
 
