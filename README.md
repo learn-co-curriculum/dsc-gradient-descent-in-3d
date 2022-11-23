@@ -113,9 +113,9 @@ This can be a little mind-bending so let's go through this again for $\frac{df}{
 
 <img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-gradient-descent-in-3d/master/images/new_parabolayx2.png" alt="3d parabola" width="400">
 
-Now for $\frac{df}{dy}$ of a function $f(x, y) $ you can think sliding through different slices of the function but this time for different values of $x$.  So again, we have our freeze-frame, but this time each frame represents ascending values along the x-axis.  
+Now for $\frac{df}{dy}$ of a function $f(x, y)$ you can think sliding through different slices of the function but this time for different values of $x$.  So again, we have our freeze-frame, but this time each frame represents ascending values along the x-axis.  
 
-First, let's understand our plots below -- they may be surprising.  Starting at the top left quadrant the graph of the function $f(x,y)$ makes sense as when $x =-1$ then the function is just $f(y) = -1*y $.  And moving down to the bottom left, $f(2, y) = 2^2*y = 4y$.  
+First, let's understand our plots below -- they may be surprising.  Starting at the top left quadrant the graph of the function $f(x,y)$ makes sense as when $x =-1$ then the function is just $f(y) = 1*y$.  And moving down to the bottom left, $f(2, y) = 2^2*y = 4y$.  
 
 So now, to think about taking the derivative, once again we move to a slice of graph for a value of $x$, and then move in the $y$ direction.  So $\frac{df}{dy}$ at $\frac{df}{dy}f(1, y)$ = 1.  And we know that the derivative of a line is always just equal to the line's slope.  For $f(1, y)$ that slope, and thus the derivative, is always $1$.  For $f(2, y)$ it's 4.
 
@@ -123,7 +123,7 @@ So now, to think about taking the derivative, once again we move to a slice of g
 
 <img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-gradient-descent-in-3d/master/images/dfdy.png" alt="partial derivative with respect to y" width="800">
 
-So that is our technique for a partial derivative.  For $\frac{df}{dy} $ we move to a slice of the curve at a specific value of $x$, move to the point for y, and then calculate the change in output as we nudge in the $y$ direction.  
+So that is our technique for a partial derivative.  For $\frac{df}{dy}$ we move to a slice of the curve at a specific value of $x$, move to the point for y, and then calculate the change in output as we nudge in the $y$ direction.  
 
 For $\frac{df}{dx}$ (again below), we move to a slice of a curve of a specific value of $y$, move the correct value of $x$ and then calculate how much the output changes as we nudge in the $y$ direction.  Just think slide, slide then nudge.  That's a partial derivative.
 
